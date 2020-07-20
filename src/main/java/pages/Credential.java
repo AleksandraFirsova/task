@@ -2,7 +2,8 @@ package pages;
 
 public class Credential {
     private String validLogin = "alsfirsova@gmail.com";
-    private String validPassword = "1q2w3e4r1Q";
+    private String validPasswordPub = "1q2w3e4r1Q";
+    private String validPasswordAdv = "1q2w3e4r1Q!";
 
     public String getValidLogin() {
         return validLogin;
@@ -12,11 +13,19 @@ public class Credential {
         this.validLogin = validLogin;
     }
 
-    public String getValidPassword() {
-        return validPassword;
+    public String getValidPasswordPub() {
+        return validPasswordPub;
     }
 
-    public void setValidPassword(String validPassword) {
-        this.validPassword = validPassword;
+    public void setValidPasswordPub(String validPasswordPub) {
+        this.validPasswordPub = validPasswordPub;
+    }
+
+    public String getValidPasswordAdv() {
+        return validPasswordAdv;
+    }
+
+    public void setValidPasswordAdv(String validPasswordAdv) {
+        this.validPasswordAdv = validPasswordAdv;
     }
 }

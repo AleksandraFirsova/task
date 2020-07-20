@@ -1,0 +1,564 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex">
+    <meta name="google-site-verification" content="LsPcJzO-Ak_Gcx_l4dLXsLRNBh60Tf2R20RnOwc5QNE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/content/img/favico.ico" type="image/x-icon">
+    <title>PayMaster</title>
+
+    <script type="text/javascript">
+        (function (window, undefined) {
+            window.onerror = function (error, url, line, column) {
+                try {
+                    var payload =
+                        "error=" + encodeURIComponent(error)
+                        + "&url=" + encodeURIComponent(url)
+                        + "&line=" + encodeURIComponent(line)
+                        + "&column=" + encodeURIComponent(column);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/utility/report', true);
+                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                    xhr.send(payload);
+                }
+                catch (ex) { }
+
+                return false;
+            }
+        }(this));
+    </script>
+
+    <script src="/Scripts/jquery-1.9.1.min.js"></script>
+<script src="/Scripts/jquery-editable-select.min.js"></script>
+<script src="/Scripts/jquery.validate-1.19.1.js"></script>
+<script src="/Scripts/jquery.validate.additional-methods-1.19.1.js"></script>
+<script src="/Scripts/polyfills/object-assign.js"></script>
+<script src="/Scripts/input-mask/inputmask.js"></script>
+<script src="/Scripts/input-mask/inputmask.dependencyLib.js"></script>
+<script src="/Scripts/input-mask/inputmask.extensions.js"></script>
+<script src="/Scripts/input-mask/inputmask.date.extensions.js"></script>
+<script src="/Scripts/input-mask/inputmask.numeric.extensions.js"></script>
+<script src="/Scripts/input-mask/inputmask.phone.extensions.js"></script>
+<script src="/Scripts/input-mask/inputmask.regex.extensions.js"></script>
+<script src="/Scripts/input-mask/jquery.inputmask.js"></script>
+<script src="/Scripts/jquery.browser.js"></script>
+<script src="/Scripts/jquery.placeholder.min.js"></script>
+<script src="/Scripts/jquery.storageapi.js"></script>
+<script src="/Scripts/jquery.syncheight.js"></script>
+<script src="/Scripts/marked.js"></script>
+<script src="/Scripts/handlebars.min.js"></script>
+<script src="/Scripts/remodal.min.js"></script>
+<script src="/Scripts/utils/url_helper.js"></script>
+<script src="/Scripts/utils/http-utils.js"></script>
+<script src="/Scripts/fancybox.js"></script>
+<script src="/Scripts/js.cookie.js"></script>
+<script src="/Scripts/locale.js"></script>
+<script src="/Scripts/support-handling.js"></script>
+<script src="/Scripts/lang-selector.js"></script>
+<script src="/Scripts/globalize.js"></script>
+<script src="/Scripts/cultures/globalize.culture.en-US.js"></script>
+<script src="/Scripts/cultures/globalize.culture.ru-RU.js"></script>
+
+
+    <link href="/Content/css/vendor/jquery-editable-select.css" rel="stylesheet">
+<link href="/Content/css/portal.css" rel="stylesheet">
+<link href="/Content/css/vendor/remodal.css" rel="stylesheet">
+<link href="/Content/css/vendor/remodal-default-theme.css" rel="stylesheet">
+<link href="/Content/css/vendor/fancybox.css" rel="stylesheet">
+
+    <!--[if IE]>
+            <link rel="stylesheet" href="/content/css/pp-ie.css" media="all"/>
+        <![endif]-->
+    
+
+    
+</head>
+<body>
+    <div class="pp-viewport">
+        <div class="pp-header pp-clearfix">
+            <a class="pp-logo"></a>
+        </div>
+
+        <noscript>
+            <div class="pp-message pp-error">
+                <h3>Ошибка</h3>
+                <p>Для работы с сайтом необходимо включить Javascript в настройках вашего браузера.</p>
+            </div>
+            <img src="/content/images/ns.png" />
+        </noscript>
+
+        
+
+<div id="requisites">
+    <div class="payment-requisites">
+        <p class="row">
+            <span class="merchant-name">Propeller Ads s.r.o.</span>
+            <span class="sum">
+                      100.00 USD
+            </span>
+        </p>
+        <div class="details-toggle">
+            <div class="description">
+                    <p class="row">
+                        <span>
+                            Номер счета:
+                        </span>
+                        <span>
+                            731648
+                        </span>
+                    </p>
+                <p>
+                    Prepayment for advertising campaign
+                </p>
+            </div>
+            <a href="#">
+                Подробнее
+                <span class="arrow">
+                    ❯
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="pp-block-header">
+    <a class="change-payment-type" id="changePS" style="">
+        <div class="ps-logo">
+            <img src="/content/img/logos/webmoney.gif">
+        </div>
+        <div class="selected-ps-name">
+            <p>WebMoney</p>
+        </div>
+    </a>
+    <h2 class="pp-title" id="h3Showcase" style="display:none">
+        Выберите способ оплаты
+    </h2>
+    <div class="select-ps" style="display: none;">
+        <a href="#" id="showAll">Другие способы оплаты</a>
+    </div>
+    <div class="token-based-payment-buttons" style="display: none;">
+                <div class="or hidden">
+            или
+        </div>
+    </div>
+    <ul class="pp-showcases" style="display: none;">
+            <li>
+                <a href="#" data-psid="67" data-payment-method="Webmoney">
+                    <div class="ps-logo">
+                        <img src="/content/img/logos/webmoney.gif">
+                    </div>
+                    <p data-desc="">WebMoney</p>
+                </a>
+            </li>
+    </ul>
+</div>
+<div class="pp-message pp-inprogress" style="">
+    <div class="loader">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+    <div class="blob blob-0"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+</div>
+
+
+    <p>Сейчас вы будете перенаправлены на <a href="javascript://" style="color: #000;" id="external-page-link">merchant.web.money</a> для совершения платежа</p>
+</div>
+
+<div class="pp-message" id="msgContainer" style="display: none"></div>
+
+<form class="requisites-form" id="payment-form">
+    <div class="pp-buttons pp-clearfix" id="buttonsBar" style="display: none;">
+        <a data-target-window="cancelModal" id="cancel" class="button default-btn modal-anchor" style="display: none;">
+            Отказаться от оплаты
+        </a>
+        <a href="/Payment/Receipt/5168b13d-48e7-42a9-8e92-fd82e4bff0f9" class="button default-btn" id="receipt" target="_blank" style="display: none">
+            Напечатать квитанцию
+        </a>
+        <button class="button primary-btn right-aligned" type="button" id="returnToMerchant" style="display: none">
+            Вернуться в магазин
+        </button>
+        <button class="button primary-btn right-aligned" type="submit" id="proceed" style="display: none">
+            Оплатить
+        </button>
+    </div>
+</form>
+<div class="remodal-bg" style="display: none"></div>
+
+<script type="text/javascript">
+
+    var paymaster = { options: {"emailRequired":false,"openInvoice":false,"culture":{"code":"ru","lcid":1049},"redirectsProhibited":false,"paymentSystemId":67,"cardsMethod":"BankCard","payment":{"id":"5168b13d-48e7-42a9-8e92-fd82e4bff0f9","amount":100.0000,"currency":"USD"},"urls":{"requisites":"/payment/requisites/5168b13d-48e7-42a9-8e92-fd82e4bff0f9","support":"/utility/requestsupport/5168b13d-48e7-42a9-8e92-fd82e4bff0f9"},"texts":{"from":{},"to":{},"or":{},"amountRange":{},"amountRangeHalf":{}},"hub":{"hubUrl":null,"appId":null,"subscriberId":"5168b13d-48e7-42a9-8e92-fd82e4bff0f9","reconnectMillisecondTimeout":10000}} };
+</script>
+
+<script src="/Scripts/hub/signalr.min.js"></script>
+<script src="/Scripts/hub/apphub-1.0.0.es5.min.js"></script>
+<script src="/Scripts/token-payments/googlepay.js"></script>
+<script src="/Scripts/token-payments/applepay.js"></script>
+<script src="/Scripts/phone-format.js"></script>
+<script src="/Scripts/process2.js"></script>
+
+
+
+<script id="input-form-template" type="text/x-handlebars-template">
+    <div class="form-control {{visibility}}">
+        <div class="flipped-label">
+            <label for="{{inputName}}">
+                {{labelText}}
+            </label>
+            <input type="{{inputType}}"
+                   placeholder="{{example}}"
+                   name="{{inputName}}"
+                   data-mask="{{customMask}}"
+                   data-num="{{inputNumber}}"
+                   data-regex="{{RegEx}}"
+                   data-req="{{isRequired}}"
+                   data-private="{{isPrivate}}"
+                   autocomplete="{{autocompleteValue}}" />
+        </div>
+    </div>
+</script>
+
+
+<script id="phone-form-template" type="text/x-handlebars-template">
+    <div class="form-control {{visibility}}">
+        <div class="flipped-label">
+            <label for="{{inputName}}">
+                {{labelText}}
+            </label>
+            <input type="tel"
+                   placeholder="{{example}}"
+                   class="phone-number"
+                   name="{{inputName}}"
+                   data-req="{{isRequired}}"
+                   data-private="{{isPrivate}}"
+                   autocomplete="{{autocompleteValue}}" />
+        </div>
+    </div>
+</script>
+
+
+<script id="selectbox-form-control" type="text/x-handlebars-template">
+    <div class="form-control">
+        <div class="static-label">
+            <label for="{{inputName}}">
+                {{labelText}}
+                <i>
+                    {{example}}
+                </i>
+            </label>
+            <select data-num="{{inputNumber}}"
+                    name="{{inputName}}">
+                {{#each options as |singleOption|}}
+                <option value="{{singleOption.value}}">{{singleOption.optionText}}</option>
+                {{/each}}
+            </select>
+
+        </div>
+    </div>
+</script>
+
+
+<script id="service-msg" type="text/x-handlebars-template">
+    <div class="message">
+        <p>
+            {{messageText}}
+        </p>
+    </div>
+</script>
+
+
+<script id="card-form-template" type="text/x-handlebars-template">
+    <div class="card-form-group">
+        <div class="form-control">
+            <div class="flipped-label">
+                <label>{{CardNumLabelText}}</label>
+                <input type="tel"
+                       placeholder="{{CardNumberExample}}"
+                       name="{{CardInputName}}"
+                       data-regex="^[0-9]{16,19}$"
+                       data-private="true"
+                       data-req="true"
+                       data-mask="9999 9999 9999 9999999" />
+            </div>
+        </div>
+        <div class="form-control flex-block">
+            <div class="expiration-date">
+                <div class="flipped-label">
+                    <label>
+                        {{ExpMonthDefaultName}}
+                    </label>
+                    <select data-num="{{inputNumber}}"
+                            name="{{ExpMonthInputName}}"
+                            data-req="true"
+                            data-mask="99"
+                            data-min="1"
+                            data-max="12"
+                            id="cardExpirationMonth">
+
+                        {{#each monthRange as |month|}}
+                        <option value="{{month}}">{{month}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="flipped-label">
+                    <label>
+                        {{ExpYearDefaultName}}
+                    </label>
+                    <select data-num="{{inputNumber}}"
+                            data-req="true"
+                            data-mask="99"
+                            data-min="{{minYearValue}}"
+                            data-max="{{maxYearValue}}"
+                            name="{{ExpYearInputName}}"
+                            id="cardExpirationYear">
+                        {{#each yearRange as |year|}}
+                        <option value="{{year}}">{{year}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="cvc">
+                <div class="flipped-label">
+                    <label class="">{{CvvLabelText}}</label>
+                    <input name="{{CvvInputName}}"
+                           type="password"
+                           id="requisite_card_cvv"
+                           field-id="cvc"
+                           data-req="true"
+                           data-private="true"
+                           data-mask="999"
+                           maxlength="3"
+                           data-regex="^[0-9]{3}$"
+                           autocomplete="off">
+                </div>
+                <div class="tooltip">
+                    <a href="javascript://" tabIndex="-1">?</a>
+                    <div class="tooltip-body">
+                        <p>{{{ CvvSampleText }}}</p>
+                        <img src="{{cvcExampleImg}}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if HolderNameVisible}}
+        <div class="form-control flipped-label">
+            <input type="text"
+                   data-num="{{inputNumber}}"
+                   name="{{WithHolderInputName}}"
+                   data-regex="^.+$"
+                   data-req="true"
+                   data-private="true" />
+            <label>
+                {{WithHolderLabelText}}
+            </label>
+        </div>
+        {{/if}}
+    </div>
+</script>
+
+
+<script id="checkbox-block" type="text/x-handlebars-template">
+    <div class="custom-checkbox">
+        <label>
+            <input type="checkbox"
+                   data-num="{{inputNumber}}"
+                   name="{{inputName}}" />
+            <span class="check-mark"></span>
+            <span class="">
+                {{{labelText}}}
+            </span>
+        </label>
+    </div>
+</script>
+
+
+<script id="notification-optional" type="text/x-handlebars-template">
+    <div class="notification-block">
+        <div class="custom-checkbox">
+            <label class="nonselectable">
+                <input type="checkbox"
+                       class="notify"
+                       name="pmnotifystatus" />
+                <span class="check-mark"></span>
+                <span>
+                    {{checkboxLabelText}}
+                </span>
+            </label>
+        </div>
+        <div class="form-control">
+            <input type="email"
+                   disabled="disabled"
+                   placeholder="{{emailOrPhoneExample}}"
+                   name="notificationSink"
+                   data-req="true"
+                   data-regex="{{regex}}"
+                   data-private="false" />
+        </div>
+    </div>
+</script>
+
+<script id="notification-required" type="text/x-handlebars-template">
+    <div class="notification-block">
+        <div class="form-control">
+            <div class="flipped-label">
+                <label for="notificationSink">
+                    {{emailOrPhoneText}}
+                </label>
+                <input type="email"
+                       placeholder="{{emailOrPhoneExample}}"
+                       name="notificationSink"
+                       data-req="true"
+                       data-regex="{{regex}}"
+                       data-private="false" />
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script id="proceed-checkbox" type="text/x-handlebars-template">
+    <input type="checkbox"
+           checked="checked"
+           class="hidden"
+           name="{{inputName}}" />
+</script>
+
+<script id="progress-loader" type="text/x-handlebars-template">
+    <div class="loader">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+    <div class="blob blob-0"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+</div>
+
+
+</script>
+
+
+
+
+
+<div data-remodal-id="cancelModal" data-remodal-options="hashTracking: false" class="cancel-payment">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <p>Вы действительно хотите отменить платеж?</p>
+    <div class="pp-modal-buttons">
+        <button type="button" class="button secondary-btn" data-remodal-action="close">Нет</button>
+        <button id="confirmCancelButton" class="button primary-btn" data-remodal-action="close">Да</button>
+    </div>
+</div>
+
+
+
+        <div class="pp-footer">
+            <div>
+                <div class="pp-copyrights">
+                    ©&nbsp;2010–2020&nbsp;PayMaster
+                </div>
+                
+    <div class="pp-contacts">
+    <a class="modal-anchor" data-target-window="supportModal">Написать в техподдержку</a>
+</div>
+<div class="modal success-msg" data-remodal-id="success-msg" data-remodal-options="hashTracking: false">
+    <h2>Сообщение отправлено!</h2>
+    <div class="sweetAlert">
+    <div class="icon success animate">
+        <span class="line tip animateSuccessTip"></span>
+        <span class="line long animateSuccessLong"></span>
+        <div class="placeholder"></div>
+        <div class="fix"></div>
+    </div>
+</div>
+</div>
+<div class="modal" data-remodal-id="supportModal" data-remodal-options="hashTracking: false">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h2>
+        Обращение в тех. поддержку
+    </h2>
+    <div class="pp-modal-content">
+        <div class="pp-form flipped-label">
+            <label for="supEmail">
+                Email:
+            </label>
+            <div>
+                <input type="email" id="supEmail" class="pp-input-text-medium" name="email" autocomplete="email" placeholder="me@gmail.com">
+
+            </div>
+        </div>
+        <div class="pp-form flipped-label">
+            <label for="supMessage">
+                Описание:
+            </label>
+            <div>
+                <textarea id="supMessage" rows="6" class="pp-textarea-medium"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="pp-modal-buttons">
+        <button class="button secondary-btn" data-remodal-action="close">Отмена</button>
+        <button class="button primary-btn" id="sendMessage" disabled="disabled">Отправить</button>
+    </div>
+    <div class="loader">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="gooey">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+    <div class="blob blob-0"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+</div>
+
+
+</div>
+
+
+            </div>
+            <div>
+                <ul class="pp-langs">
+                    <li>
+                        <a>
+                            <img src="/content/images/lang-ru.svg" alt="">
+                        </a>
+                        <ul>
+                                <li>
+                                    <a href="/en-US/Payment/process/5168b13d-48e7-42a9-8e92-fd82e4bff0f9">
+                                        <img src="/content/images/lang-en.svg" alt="">
+                                    </a>
+                                </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+
+</body></html>

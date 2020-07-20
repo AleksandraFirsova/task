@@ -1,0 +1,899 @@
+<html><head>
+	<meta name="ROBOTS" content="NOINDEX">
+	<meta name="google" value="notranslate" content="notranslate"> 
+	<title>Merchant WebMoney Transfer</title>
+	<link rel="shortcut icon" href="favicon.ico">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/wm-jqueryui.css">  
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">  
+  <link rel="stylesheet" type="text/css" href="css/user.block.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.min.css?v=6">
+	<link rel="stylesheet" type="text/css" href="css/style_blue.css">
+  <script type="text/javascript" async="" defer="" src="//piwik.webmoney.ru/piwik.js"></script><script src="js/jquery-3.1.0.min.js"></script>
+  <script src="js/ui/jquery-ui.min.js"></script>
+  <script src="js/main.js?v=3"></script>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.webmoney.ru/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '4']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+<style id="css-ddslick" type="text/css">.dd-select{ border-radius:2px; border:solid 1px #ccc; position:relative; cursor:pointer;}.dd-desc { color:#aaa; display:block; overflow: hidden; font-weight:normal; line-height: 1.4em; }.dd-selected{ overflow:hidden; display:block; padding:3px 17px 3px 7px ; font-weight:600;}.dd-pointer{ width:0; height:0; position:absolute; right:7px; top:50%; margin-top:-3px;}.dd-options{ border:solid 1px #cfcfcf; list-style:none; box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5); display:none; position:absolute; z-index:2000; margin:0; padding:0;background:#fff; overflow:auto; border-radius: 3px;}.dd-option{ padding:4px 7px; display:block; overflow:hidden; text-decoration:none; color:#333; cursor:pointer;-webkit-transition: all 0.25s ease-in-out; -moz-transition: all 0.25s ease-in-out;-o-transition: all 0.25s ease-in-out;-ms-transition: all 0.25s ease-in-out; }.dd-options > li:last-child > .dd-option{ border-bottom:none;}.dd-option:hover{ background:#e9e9e9; color:#000;}.dd-selected-description-truncated { text-overflow: ellipsis; white-space:nowrap; }.dd-option-selected { background:#e9e9e9; }.dd-option-image, .dd-selected-image { vertical-align:middle; float:left; margin-right:5px; max-width:64px;}.dd-image-right { float:right; margin-right:15px; margin-left:5px;}.dd-container{ position:relative;} </style></head>
+<body>
+<script>
+window.onerror = function (error, url, line, column) {
+  try {
+    if (0 == line && 0 == column) 
+      return false;
+  	var XHR = ('onload' in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+  	var xhr = new XHR();
+  	xhr.open('POST', 'reportlog.asp', true);
+  	
+  	var formData = new FormData();
+  	formData.append('error', error);
+  	formData.append('url', url);
+  	formData.append('line', line);
+  	formData.append('column', column);
+
+  	xhr.send(formData);
+  }
+  catch (ex) { }
+
+  return false;
+}
+</script>
+  <div class="merchant-form-container">
+<!-- top_new.inc END -->
+<a href="Close2Start.asp" class="registration-button">Sign Up</a>
+<!-- toplogo_new.inc BEGIN -->
+    <div class="merchant-logo-container">
+      <a href="http://www.wmtransfer.com/" class="merchant-logo">
+        <object type="image/svg+xml" data="img/webmoney-transfer.svg">
+        	<img src="img/logo-wm-sat.png" alt="WebMoney">
+				</object>
+      </a>
+
+    </div>
+<!-- toplogo_new.inc END -->
+<script type="text/javascript" src="js/jquery.ddslick.min.js"></script>
+<script type="text/javascript" src="js/refresh.js?v=2"></script>
+<script type="text/javascript" src="js/bl.js"></script>
+<script type="text/javascript" src="js/jquery-qrcode-0.14.0.min.js "></script>
+<script type="text/javascript" src="js/floatingLabel.js "></script>
+<script type="text/javascript">floatingLabel.init();</script>
+<link rel="stylesheet" href="css/floatingLabel.css">
+
+<script type="text/javascript" src="js/cookie_helper.js"></script>
+<script type="text/javascript">
+var bClassicLaunch = false;
+</script>
+
+<script type="text/javascript" src="js/jsUri.js"></script>
+<script type="text/javascript" src="js/SingleSignOn.js"></script>
+<script type="text/javascript">
+        SingleSignOn_Execute({
+            singleSignOnUrl: 'https://login.web.money/GateKeeper/SingleSignOn.js',
+            logOn: function(data) {
+                var logOnUrl = new Uri('https://login.web.money/GateKeeper.aspx?RID=CABE739A-8CD0-48B1-B81A-A70C0128C8DC&lang=en-US&rnd=0.5936106244414863');
+                if (data.wmId) {
+                    logOnUrl.replaceQueryParam('quiet', 1);
+                    logOnUrl.replaceQueryParam('wmId', data.wmId);
+                }
+                return (bClassicLaunch ? null : logOnUrl.toString());
+            },
+        });
+</script>
+
+<style type="text/css">
+  fieldset { padding:0; border:0; margin-top:25px; }
+  .ui-dialog .ui-state-error { padding: .3em; }
+</style>
+<div id="dialog-form" title="Select WMID" style="display:none;">
+  <p>Several WMID satisfy the data entered. Choose one of them and continue to pay.</p>
+  <form id="chooseWMIDForm">
+    <fieldset>
+      <label for="WMIDList">Select WMID:</label>
+      <select id="WMIDList" name="WMIDList"></select>
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+    </fieldset>
+  </form>
+</div>
+
+
+<div class="merchant-payment-top-info-container">
+  <div class="merchant-payment-top-info">
+    <div class="merchant-payment__main-descr">
+      <div class="zag">[Propeller Ads s.r.o. #504] Prepayment for advertising campaign</div>
+      <div class="sm_zag"><span>100.00</span> WMZ</div>
+    </div>
+    <div class="merchant-payment__main-descr__table">
+      <table>
+        <tbody><tr>
+          <td>Merchant:</td>
+          <td colspan="2"> 
+							<span class="pay_to_string" title="Propeller Ads (via Paymaster24)">Propeller Ads (via Paymaster24)</span>
+							
+					</td>
+        </tr>
+
+				<tr>
+					<td>Invoice  #:</td>
+					<td>144105400</td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td>WMID:</td>
+					<td class="wmid_info"><a target="_blank" href="https://passport.web.money/asp/certview.asp?wmid=134682001033" title="verify WM-passport">134682001033</a> <span class="att_icon"><a target="_blank" href="https://passport.web.money/asp/certview.asp?wmid=134682001033" title="verify WM-passport"><img src="img/nat190.gif" title="verify WM-passport"></a></span></td>
+					<td class="merchant-payment__main-descr__certificate"><a href="javascript:showbldesc()"><b style="color:black;">BL:</b><img align="top" border="0" src="https://bl.wmtransfer.com/img/bl/134682001033?w=45&amp;h=16&amp;bg=0xFFFFFF" alt="business level"></a></td>
+				</tr>
+      </tbody></table>
+    </div>
+		<div class="button-toggle-descr">
+			<span>more</span>
+		</div>
+		<div class="button-toggle-descr">
+			<span>less</span>
+		</div>
+  </div>
+</div>
+<form action="payment_conf_paymer.asp?SP=" id="signedloginform" method="post" onsubmit="bRejectPayment = false; return saveparam();" autocomplete="off">
+
+<div class="merchant-payment-form">
+  <div class="select-payment-variant">
+    <label>Select a payment method</label>
+		<div class="select-payment-variant-sel-wrapper">
+    <noscript class="error-block" style="display: block;">For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.aboutjavascript.com/" target="_blank"> instructions how to enable JavaScript in your web browsers</a>.</noscript>
+    <div id="select-payment-variant-sel" class="dd-container" style="width: 260px;"><div class="dd-select" style="width: 260px; background: rgb(250, 250, 250);"><input class="dd-selected-value" type="hidden" name="s_auth_type" value="authtype_17"><a class="dd-selected"><img class="dd-selected-image" src="img/wm_icon.png"><label class="dd-selected-text" style="line-height: 45px;">WebMoney</label></a><span class="dd-pointer dd-pointer-down"></span></div><ul class="dd-options dd-click-off-close" style="width: 260px; display: none;"><li><a class="dd-option dd-option-selected"> <input class="dd-option-value" type="hidden" value="authtype_17"> <img class="dd-option-image" src="img/wm_icon.png"> <label class="dd-option-text">WebMoney</label></a></li></ul></div>
+<script type="text/javascript">
+	jQuery(document).ready(function () { $('#select-payment-variant-sel').ddslick({ onSelected: function (data) { change_auth_by_select('select-payment-variant-sel'); } }); });
+  jQuery(document).ready(function() {  $('html, body').animate(/*{ scrollTop: $("#auth").offset().top   }*/);
+});
+
+</script>
+		</div>
+  </div>
+</div>
+
+<script type="text/javascript" id="CloseLogin">
+var bRejectPayment = true;
+var sWMID = "";
+function WriteClosePaymentOnUnload() {
+  if(bRejectPayment) 
+  { 
+    //    ajaxpack.postAjaxRequest("CloseLogin.asp?rej=" + sWMID + "&a=5", "", "cb_fail", "txt");	
+    var dataWMID = "";
+    var dateA = 4;
+    $.post("CloseLogin.asp?rej=&a=5", { rej: dataWMID, a : dateA }, function (data, status) { cb_fail(); });
+  }
+}
+window.onunload=WriteClosePaymentOnUnload;
+
+jQuery( document ).ready(function(){  $.get("CheckScript.asp?rej={38446AF2-3DC1-4490-947B-98F6BC1B1B6C}", function (data, status) { });});
+</script>
+<script type="text/javascript">
+	var actionURLat2 = "NewSignedLoginAction2.asp?SP=";
+	var actionURLat4 = "payment_conf_telepat.asp?SP=";
+	var actionURLat8 = "http://127.0.0.1:2803/merchant?SP=";
+	var actionURLat9 = "NewSignedLoginTiny.asp?SP=";
+	var actionURLat17 = "payment_conf_paymer.asp?SP=";
+
+	var lmi_payment_amount = '100.00';
+	var lmi_payee_purse = 'Z';
+
+	var LMI_FAIL_URL = "https://node1.paymaster24.com/dispatch/redirectuser/wmf?id=ed4ff440-a4a1-4b7e-ab33-d1a1032a72a2";
+	var LMI_FAST_PHONENUMBER = "79218665714";
+</script>
+
+<script type="text/javascript" id="WMCheckLang">
+	var L_ERR_TOOFEWDIGITS = "Too few digits in the captcha";
+	var L_ERR_ENTERLOGIN = "Enter login";
+	var L_ERR_ENTERPASSWORD = "Enter password";
+	var L_ERR_EMAILBADFORMAT = "EMail address has invalid format";
+	var L_ERR_TOOFEWDIGITSLOGIN = "too few characters in the login";
+	var L_ERR_CHECKLOGIN = "An error occurred while checking login and password. Please try again later.";
+	var L_ERR_WMIDTYPENOTDEF = "type of WMID {0} is not defined";
+	var L_ERR_WMIDNOTPASSWORDENABLE = "Selection WMID {0} does not allow payment with a password. Use a different authentication method - {1}.";
+	var L_ERR_TOOMACH = "You have exceeded the maximum number of attempts to enter a code";
+
+	var L_PAYMENT_CONTINUE = "Continue Payment";
+	var L_METHOD_ANOTHER = "Another Method";
+
+	var L_PAYMENTCANCELCONFIRM = "Are you sure to cancel the payment?";
+  var L_PAYMENT_PWDENTER = "Enter password for login";
+  var L_PAYMENT_LOGIN = "Your login";
+  var L_ERR_LOGINNOTFOUND = "Login is not registered in the system. Specify another.";
+  var L_PAYMENT_PAYANDREG = "Go to payment and SignUp";
+  var L_GOTOPAY = "Go to Payment";
+  var L_ERR_PHONENOTFOUND = "The phone is not registered in the system. You can continue <a href='Close2Start.asp'>to pay by registering</a> a new account for this number. Or <a href='javascript:window.location.reload(true)'>Refuse</a> and specify another login.";
+  var L_ERR_PWDFORGOT = "<br/>Forgot Password? Password recovery is <a href='https://key.web.money/10/?wmidaccess=false&q={0}' target='_blank'>here</a>.";
+  var L_WMIDBYPURSE= "You specify the number of purse {0}. We found your WMID {1}.";
+</script>
+<script type="text/javascript" id="WMCheck">
+var wmids;
+function ValidateEmailJS(a) {
+  var inStrEmail = new String(a)
+  var emailpatern = /[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}/gi;
+  var res = emailpatern.exec(inStrEmail);
+  if (res == null)
+    return false;
+  var res2 = res[0].indexOf(inStrEmail);
+  if (res2 == -1)
+    return false;
+  return true;
+}
+
+function saveparam() 
+{
+  // сохранить в куках выбор?
+  if ($('#img_rand_l').is(':visible')) {
+    var lightcaptcha = '' + $('#lightcaptcha').val();
+    lightcaptcha = lightcaptcha.replace(/ /gi, '');
+    if (!(lightcaptcha.length >= 2 && lightcaptcha.length < 7))
+    {
+    	alert(L_ERR_TOOFEWDIGITS);
+      $('#lightcaptcha').focus();
+      return false;
+    }
+    $('#signedloginform').attr('action', actionURLat2);
+    return true;
+  }
+  if ($('#img_rand_c').is(':visible')) {
+		bClassicLaunch = true;
+    $('input[name="pinnumber"]').val('');
+    $('#signedloginform').attr('action', actionURLat8);
+    return true;
+  }
+  if ($('#wmcheck_no').is(':visible')) 
+  {
+    $('#idresult').addClass('js-hidden');
+
+    var login = '' + $('#wmcheck_no').val();
+    login = login.replace(/ /gi, '');
+		if(!(login.length >= 5))
+    {
+      alert(L_ERR_ENTERLOGIN);
+      $('#wmcheck_no').focus();
+      return false;
+    }
+    var mobcaptcha = '' + $('#mobilecaptcha').val();
+    mobcaptcha = mobcaptcha.replace(/ /gi, '');
+    if (!(mobcaptcha.length >= 2 && mobcaptcha.length < 7)) 
+    {
+      alert(L_ERR_TOOFEWDIGITS);
+      $('#mobilecaptcha').focus();
+      return false;
+    }
+    // проверить, что или мыло или WMID или телефон
+    if (login.indexOf('@') > 0) {
+      $('#wmcheck_no').val(login);
+      // мыло? проверим формат
+      if (!ValidateEmailJS(login)) {
+      	alert(L_ERR_EMAILBADFORMAT);
+        $('#wmcheck_no').focus();
+        return false;
+      }
+      //ищем по мылу и паролю
+    }
+    else {
+      login = login.replace(/\D/gi, '');
+      $('#wmcheck_no').val(login);
+      if (login.length < 9) {
+      	alert(L_ERR_TOOFEWDIGITSLOGIN);
+        $('#wmcheck_no').focus();
+        return false;
+      }
+      //ищем по телефону (WMID) и паролю
+    }
+    var pwd = '';
+//    if ($('#idpasswd').is(':visible')) {
+    if (!$('#idpasswd').hasClass("js-hidden")) {
+      pwd = '' + $('#wmcheck_pwd').val();
+  		pwd = pwd.replace(/^\s+|\s+$/gm,'');
+      $('#wmcheck_pwd').val(pwd);
+      if (!(pwd.length >= 1))
+      {
+        alert(L_ERR_ENTERPASSWORD);
+        $('#wmcheck_pwd').focus();
+        return false;
+      }
+    }
+    var dataLP = {};
+    dataLP.login = login;
+    dataLP.pwd = pwd;
+    dataLP.digits = mobcaptcha;
+    dataLP.amount = parseFloat(lmi_payment_amount);
+    dataLP.atype = lmi_payee_purse;
+    var urlLPCheck = "LPCheck.asp?l="+login;
+    if(pwd == '') urlLPCheck = "LCheck.asp?l="+login;
+    $('#auth').prop( "disabled", true );
+    $.ajax({ type: "POST", url: urlLPCheck, data: dataLP }).done(function (data) { ProcessData(data); }).fail(function () { alert(L_ERR_CHECKLOGIN) });
+		setCookieYearExpires("phone", login);
+		return false;
+  }
+	return true;
+}
+
+function ProcessData(parJSON) {
+//  alert(parJSON)
+//  var objRes = parseJSON(data)
+  var objRes = window.JSON && window.JSON.parse ? JSON.parse(parJSON) : eval('(' + parJSON + ')');
+//  if ($('#idpasswd').is(':hidden')) { // поиск по логину
+  if ($('#idpasswd').hasClass("js-hidden")) { // поиск по логину
+    var login = '' + $('#wmcheck_no').val();
+    if(0 == objRes.retval) {
+      var newlogin = objRes.login;
+      if(login != newlogin) $('#wmcheck_no').val(newlogin);
+      if(typeof(objRes.wmPurse)!='undefined') {
+        var msg = L_WMIDBYPURSE;
+        msg = msg.replace('{0}', login);
+        msg = msg.replace(/\{1\}/gi, newlogin);
+        alert(msg);
+      }
+    // нашли показать пароль, скрыть капчу. исправить стиль поля с логином
+      $('h4.merchant-login-area_zag').text(L_PAYMENT_PWDENTER); // 'Укажите пароль для логина'
+//      $('#idpasswd').show();
+      $('#idpasswd').removeClass('js-hidden');
+      $('#wmcheck_pwd').focus();
+      $('#idcaptcha').hide();
+      $('#wmcheck_no').attr("readonly", "readonly");
+      $('#pwdrest').attr("href", "https://key.web.money/10/?wmidaccess=false&q="+$('#wmcheck_no').val());
+      $('#idresult').addClass('js-hidden');
+      $('#auth').prop( "disabled", false );
+      return;
+    }
+    if (7 == objRes.retval) { 
+    // не нашли, скрыть капчу. исправить стиль поля с логином
+      var newlogin = objRes.login;
+      if(login != newlogin) $('#wmcheck_no').val(newlogin);
+      $('h4.merchant-login-area_zag').text(L_PAYMENT_LOGIN); // 'Логин'
+      $('#idcaptcha').hide();
+      var RegAndPay = 0 == 1;
+      if(ValidateEmailJS(login) || !RegAndPay) {
+        // раздизаблить
+        $('#wmcheck_no').removeAttr("readonly");
+        $('#wmcheck_no').focus();
+        $('#auth').prop( "disabled", false );
+        // выдать текст, что аткого нет
+//        $('#idresult').show();
+        setTimeout(function() {$('#idresult').removeClass('js-hidden');}, 500);
+        $('#idresulttext').text(L_ERR_LOGINNOTFOUND); // 'Такой логин не зарегистрирован в системе. Поробуйте указать другой.'
+      }
+      else {
+        // показать кнопки регистрации и повтора, скрыть капчу. исправить стиль поля с логином
+        $('#wmcheck_no').attr("readonly", "readonly");
+        $('#auth').prop( "disabled", false );
+        switchauth(true);
+        setTimeout(function() {$('#idresult').removeClass('js-hidden');}, 500);
+        $('#idresulttext').html(L_ERR_PHONENOTFOUND); // 'Телефон не зарегистрирован в системе. Вы можете продолжить оплату с регистрацией нового аккаунта на этот номер или <a href="javascript:location=location">Отказаться</a> и указать другой логин.'
+      }
+    } else {
+    	refreshPic('img_rand');
+      alert(objRes.retdesc);
+      $('#auth').prop( "disabled", false );
+//      custom_alert(objRes.retdesc);
+      if (51 == objRes.retval) {
+      	alert(L_ERR_TOOMACH);
+  			bRejectPayment = false;
+  			window.location.reload(true);
+  			return;
+      }
+    }
+    
+    return;
+  }
+//  alert('objRes.retval:'+objRes.retval)
+  if (0 != objRes.retval) {
+  	refreshPic('img_rand');
+//    alert(objRes.retdesc);
+    if(7 == objRes.retval)
+    {
+      var msg = L_ERR_PWDFORGOT.replace('{0}', $('#wmcheck_no').val());
+      custom_alert(objRes.retdesc + msg);//'<br/>Забыли пароль? Восстановление <a href="https://key.web.money/10/NewStart.aspx?pwdonly" target="_blank">здесь</a>.'
+    } else if (51 == objRes.retval || 1003 == objRes.retval) {
+      var msg = L_ERR_PWDFORGOT.replace('{0}', $('#wmcheck_no').val());
+    	custom_alert(L_ERR_TOOMACH + " " + msg, "", true);
+			return;
+    }
+    $('#auth').prop( "disabled", false );
+  } else {
+   	//    alert('objRes.wmids.length:'+objRes.wmids.length)
+		if (objRes.wmids.length > 1) {
+      // показать список
+      $('#auth').prop( "disabled", false );
+      wmids = objRes.wmids;
+      openChooseWMIDDlg();
+    }
+    else {
+      // отправить на авторизацию в зависимости от типа
+      if (objRes.wmids[0].kt == 0 || objRes.wmids[0].kt == 1) {
+        if (objRes.wmids[0].enumId == 0 && false) {
+          // на быстрый платеж
+          $('#wmcheck_no').val(objRes.wmids[0].phone);
+          $('#wmcheck_pwd').val('1111');
+          $('#signedloginform').attr('action', actionURLat17);
+          $('#signedloginform').attr('onsubmit', "bRejectPayment = false; return true;");
+        }
+        else {
+          $('#lightcaptcha').val($('#mobilecaptcha').val());
+          $('#signedloginform').attr('action', actionURLat2.replace('Action2.asp', 'Action2LP.asp'));
+          $('#signedloginform').attr('onsubmit', "bRejectPayment = false; return true;");
+        }
+        $('#signedloginform').submit();
+        return 
+      }
+      if (objRes.wmids[0].kt == 2) {
+        // наверное на мини, но неплохо бы проверить чек и тогда на быстрый платеж
+        $('#wmcheck_no').attr('name', 'tinyemail');
+        $('#wmcheck_pwd').attr('name', 'tinypasswd');
+        $('#signedloginform').attr('action', actionURLat9);
+        $('#signedloginform').attr('onsubmit', "bRejectPayment = false; return true;");
+        $('#signedloginform').submit();
+        return
+      }
+      if (objRes.wmids[0].kt == 3) {
+        // на телепат
+        $('#wmcheck_no').val(objRes.wmids[0].phone);
+        $('#wmcheck_no').attr('name', 'phonenumber');
+        $('#wmcheck_pwd').attr('name', 'smsnumber');
+        $('#signedloginform').attr('action', actionURLat4);
+        $('#signedloginform').attr('onsubmit', "bRejectPayment = false; return true;");
+        $('#signedloginform').submit();
+        return
+      }
+      if (objRes.wmids[0].kt == 1111) {
+        // на телепат
+        $('#wmcheck_no').val(objRes.wmids[0].phone);
+        $('#wmcheck_pwd').val('1111');
+        $('#signedloginform').attr('action', actionURLat17);
+        $('#signedloginform').attr('onsubmit', "bRejectPayment = false; return true;");
+        $('#signedloginform').submit();
+        return
+      }
+      // непонятный тип
+      var msgTypeNotDef = L_ERR_WMIDTYPENOTDEF;
+      msgTypeNotDef = msgTypeNotDef.replace('{0}', objRes.wmids[0].wmid);
+      alert(msgTypeNotDef);
+      $('#auth').prop( "disabled", false );
+    }
+  }
+}
+function bIsQuickPosible(smspay) {
+  return (smspay != 0);
+}
+function openChooseWMIDDlg() {
+	var dialog,
+  wmidList = $("#WMIDList")
+  for (var n = 0; n < wmids.length; n++) {
+    //wmidList.addOption(wmids[n].wmid, wmids[n].wmid, false);
+    wmidList.append("<option value='" + n.toString() + "'>" + wmids[n].wmid + "</option>");
+  }
+  function chooseWMID() {
+    // выбрать WMID, установить в 
+    var wmidN = $("#WMIDList option:selected").val();
+    var wmid = wmids[wmidN].wmid;
+    var phone = wmids[wmidN].phone;
+//    alert(wmid+'|'+wmids[wmidN].smspay);
+    if (wmids[wmidN].kt == 0 || wmids[wmidN].kt == 1) {
+      if (!bIsQuickPosible(wmids[wmidN].smspay) && wmids[wmidN].enumId==0) {
+      	var msgSmsNotPosible = L_ERR_WMIDNOTPASSWORDENABLE;
+      	msgSmsNotPosible = msgSmsNotPosible.replace(/\{0\}/gm, wmid);
+      	msgSmsNotPosible = msgSmsNotPosible.replace(/\{1\}/gm, (wmids[wmidN].kt == 0 ? 'Keeper WinPro(Classic)' : 'Keeper WebPro(Light)'));
+        alert(msgSmsNotPosible);
+        return false;
+      }
+    }
+    $('#wmcheck_no').val(wmid);
+//    $('#wmcheck_pwd').val('1111');
+    dialog.dialog("close");
+    $('#signedloginform').submit();
+  }
+  var buttons = {};
+  buttons[L_PAYMENT_CONTINUE] = chooseWMID;
+  buttons[L_METHOD_ANOTHER] = function () { dialog.dialog("close");  };
+
+	dialog = $("#dialog-form").dialog({
+    autoOpen: false,
+    height: 226,
+    width: 450,
+    modal: true,
+    buttons: buttons,
+    close: function () {
+//      $("#chooseWMIDForm").reset();
+    }
+  });
+  dialog.find("#chooseWMIDForm").on("submit", function (event) {
+    event.preventDefault();
+    chooseWMID();
+   });
+  dialog.dialog("open");
+}
+</script>
+
+<div class="merchant-login-area">
+
+  <h4 class="merchant-login-area_zag">Enter your login and digits from the image</h4>
+  <div class="merchant-login-area__item" id="idlogin">
+    <div class="floating-label">
+    <label for="wmcheck_no" id="l_wmcheck_no" class="floating">WMID, Email or phone number</label>
+    <input type="text" name="pinnumber" id="wmcheck_no" placeholder="WMID, Email or phone number">
+    </div>
+  </div>
+  <div class="merchant-login-area__item js-hidden" id="idpasswd">
+    <div class="floating-label">
+    <label for="wmcheck_pwd">Password</label>
+    <input type="password" id="wmcheck_pwd" name="pincode" value="" autocomplete="off" placeholder="Password">
+    <a href="https://key.web.money/10/?q=" style="float: right;font-size: small;" tttarget="pwdrest" id="pwdrest">Forgot Password?</a>
+    </div>
+<script type="text/javascript">
+var Browser = navigator.userAgent.toLowerCase(); 
+if (Browser.indexOf('safari') != -1) { 
+  if (Browser.indexOf('chrome') > -1) {
+
+  } else {
+    var F = document.getElementById('wmcheck_pwd');
+    if (F.type.toLowerCase() == "password") {
+			F.type = "text";
+      F.style.cssText = "-webkit-text-security: disc";
+    }   
+  }
+}			
+</script>
+  </div>
+	<div class="merchant-login-area__item captcha clearfix" id="idcaptcha">
+    <div class="floating-label">
+    <label for="mobilecaptcha">Digits from picture</label>
+    <input type="tel" class="captcha-value" placeholder="Digits from picture" pattern="\d{3,5}" title="3 - 5 digits" id="mobilecaptcha" name="mobilecaptcha" autocomplete="nope">
+    </div>
+		<span class="captcha-img">
+			<img id="img_rand" src="GenImg.asp?rnd=0.354849686349101" alt="Secret Code">
+		</span>				
+    <a href="#" tabindex="-1" onclick="refreshPic('img_rand'); return false;" id="a_img_rand" class="captcha-update" title="click, if picture is not visible"></a>
+	</div>
+<style type="text/css">
+.merchant-info-text{
+margin-top: -10px;
+}
+.merchant-login-area__item{
+padding-top: 10px;
+opacity: 1;
+transition: opacity 0.8s ease-out;
+}
+.merchant-info-text a{
+text-transform: lowercase;
+text-decoration: underline;
+color: #4386ad;
+font-weight:bold;
+}
+.merchant-login-area__item{
+padding-top: 10px;
+opacity: 1;
+transition: opacity 0.8s ease-out;
+}
+#idpasswd{
+padding-bottom: 3px;
+}
+.js-hidden{
+opacity: 0;
+visibility: hidden;
+height: 0 !important;
+margin: 0 !important;
+padding: 0 !important;
+position: absolute !important;
+overflow: hidden;
+}
+@media only screen and (max-width: 30em){
+  .merchant-login-area__item.captcha .floating-label .captcha-value{
+    width: 100%;
+  }
+  #signedloginform{
+    position: relative;
+  }
+  #auth{
+    position: absolute;
+    bottom: 143px;
+    z-index: 14;
+  }
+  .merchant-login-area__item.login-variants{
+    margin-top: 64px;
+  }
+  .keeper-webpro__more-info.login-variant__more-info,
+  .keeper-winpro__more-info.login-variant__more-info{
+    padding-bottom: 80px;
+  }
+  .keeperWindowOn .btns_block .next-step__btn.btn-half{
+    width: calc(100% - 32px) !important;
+    margin-left: 16px;
+  }
+}
+</style>
+  <div class="merchant-login-area__item clearfix js-hidden" id="idresult">
+    <span id="idresulttext" class="merchant-info-text info-message"></span>
+  </div>
+  
+	<div class="merchant-login-area__item login-variants">
+      <div class="login-variants__zag">
+				<span>Or select:</span>
+			</div>
+			<div class="login-keeper fl">
+        <ul class="login-variants__list">
+
+					<li>
+            <a href="" class="keeper-webpro" title="Keeper WebPro"></a>
+            <span class="title">WebPro</span>					
+            <div class="keeper-webpro__more-info login-variant__more-info" style="display: none;">
+              <span class="login-variant__more-info__close"></span>
+              <div class="login-variant__more-info__content">
+                <div class="zag">Payment via Keeper WebPro(Light)</div>
+                <div class="login-variant__more-info__item">
+                  <div class="login-variant__more-info__item__number">1</div>
+                  <div class="login-variant__more-info__item__text">
+                    Enter digits from picture:
+                    <div class="merchant-login-area__item captcha clearfix">
+                      <input type="tel" pattern="\d{3,5}" title="3 - 5 digits" id="lightcaptcha" name="lightcaptcha" autocomplete="off" class="captcha-value" placeholder="Digits from picture">
+                      <span class="captcha-img">
+                        <img id="img_rand_l" src="GenImg.asp?rnd=0.354849686349101" alt="Secret Code">
+                      </span>
+                      <a id="a_img_rand_l" href="#" onclick="refreshPic('img_rand_l');	return false;" class="captcha-update" title="click, if picture is not visible"></a>
+                     </div>
+                  </div>
+                </div>
+                <div class="login-variant__more-info__item">
+                  <div class="login-variant__more-info__item__number">2</div>
+                  <div class="login-variant__more-info__item__text">
+									  Click "GO TO PAYMENT"
+                  </div>
+                </div>
+                <div class="login-variant__more-info__item">
+                  <div class="login-variant__more-info__item__number">3</div>
+                  <div class="login-variant__more-info__item__text">
+									  In the pop-up window choose your WMID.
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+					</li>
+
+					<li>
+            <a href="" class="keeper-winpro" title="Keeper WinPro"></a>
+            <span class="title">WinPro</span>              
+            <div class="keeper-winpro__more-info login-variant__more-info">
+              <span class="login-variant__more-info__close"></span>
+              <div class="login-variant__more-info__content">
+                <div class="zag">Payment via Keeper WinPro(Classic)</div>
+                <div class="login-variant__more-info__item">
+                  <div class="login-variant__more-info__item__number">1</div>
+                  <div class="login-variant__more-info__item__text">
+                    Be sure WebMoney Keeper WinPro(Classic) is running
+                  </div>
+                </div>
+                <div class="login-variant__more-info__item">
+                  <div class="login-variant__more-info__item__number">2</div>
+                  <div class="login-variant__more-info__item__text">
+									  Click "GO TO PAYMENT"
+                  </div>
+                </div>
+                <div class="login-variant__more-info__item">
+                  <div class="login-variant__more-info__item__number">3</div>
+                  <div class="login-variant__more-info__item__text">
+									  In the pop-up window enter this digits:
+                    <div class="merchant-login-area__item captcha clearfix">                       
+                      <span class="captcha-img">
+                        <img id="img_rand_c" src="GenImg.asp?rnd=0.354849686349101" alt="Secret Code">
+                      </span>              
+                      <a id="a_img_rand_c" href="#" onclick="refreshPic('img_rand_c');	return false;" class="captcha-update" title="click, if picture is not visible"></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+					</li>
+
+				</ul>
+			</div>
+			<div class="login-soc fr">
+				<ul class="login-variants__list">
+					<li><a href="#" onclick="javascript:SocialAuthWith('facebook')" class="soc-facebook" title="Facebook"></a></li>
+          
+					<li><a href="#" onclick="javascript:SocialAuthWith('Linkedin')" class="soc-linkedin" title="Linkedin"></a></li>
+					<li><a href="#" onclick="javascript:SocialAuthWith('Gmail')" class="soc-google" title="GMail"></a></li>
+          
+					<li>
+						<div class="soc-show_more">
+              <span class="soc-show_more__icon"></span>
+							<div class="soc-show_more__list">
+								<ul class="login-variants__list">
+									<li><a href="#" onclick="javascript:SocialAuthWith('mailru')" class="soc-mailru" title="Mail@ru"></a></li>
+
+									<li><a href="#" onclick="javascript:SocialAuthWith('Gmail')" class="soc-google" title="GMail"></a></li>
+									<li><a href="#" onclick="javascript:SocialAuthWith('Linkedin')" class="soc-linkedin" title="Linkedin"></a></li>
+          
+									<li><a href="#" onclick="javascript:SocialAuthWith('Yandex')" class="soc-yandex" title="Яндекс"></a></li>
+									<li><a href="#" onclick="javascript:SocialAuthWith('ICQ')" class="soc-icq" title="ICQ"></a></li>
+									<li><a href="#" onclick="javascript:SocialAuthWith('twitter')" class="soc-twitter" title="Twitter"></a></li>
+									<li><a href="#" onclick="javascript:SocialAuthWith('windowslive')" class="soc-windows_live" title="Windows live"></a></li>
+									<li><a href="#" onclick="javascript:SocialAuthWith('Yahoo')" class="soc-yahoo" title="Yahoo"></a></li>
+									<!--li><a href="#" onclick="javascript:SocialAuthWith('MyOpenId')" class="soc-myopenid" title="MyOpenId"></a></li-->
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+<script type="text/javascript">
+  function SocialAuthWith(socnet) {
+    //return 
+    try { document.domain = "web.money"; } catch (e) { /* if not IE */ }
+    var width = 590;
+    var height = 300;
+    switch (socnet) {
+    	case 'facebook': width = 600; height = 300; break; 
+			case 'twitter': /*resize('582','470');*/ break;
+      case 'Gmail': width = 600; height = 420; break;
+      case 'Yandex': width = 600; height = 600; break;
+      case 'windowslive': width = 840; height = 570; break;
+      case 'mailru': width = 600; height = 400; break;
+      case 'vkontakte': width = 600; height = 400; break;
+      case 'odnoklassniki': width = 730; height = 410; break;
+      case 'ICQ': width = 600; height = 500; break;
+      case 'MyOpenId': width = 680; height = 500; break;
+    }
+    var left = (screen.width - width) / 2;
+    var top = (screen.height - height) / 2;
+    var url = "http://contacts.webmoney.ru/service/getuser.ashx";
+    url += "?ServiceCode=" + socnet;
+/*
+    url += "&SuccessUrl=" + encodeURIComponent("https://merchant.web.money/lmi/socialAuth.asp?action=success&testparam=1243112221112ZXCVASDFGHAAHQqwer12");
+    url += "&FailUrl=" + encodeURIComponent("https://merchant.web.money/lmi/socialAuth.asp?error=1&action=failure");
+
+    url += "&SuccessUrl=" + encodeURIComponent("https://merchant.web.money/lmin/socialAuth.asp?action=success&testparam=1243112221112ZXCVASDFGHAAHQqwer12");
+    url += "&FailUrl=" + encodeURIComponent("https://merchant.web.money/lmin/socialAuth.asp?error=1&action=failure");
+*/
+    url += "&SuccessUrl=" + encodeURIComponent("https://merchant.web.money/lmi/socialAuth.asp?action=success&testparam=1243112221112ZXCVASDFGHAAHQqwer12");
+    url += "&FailUrl=" + encodeURIComponent("https://merchant.web.money/lmi/socialAuth.asp?error=1&action=failure");
+    url += "&session=" + encodeURIComponent("659006129");
+    url += "&wmid=" + encodeURIComponent("967909998006");
+    url += "&domain=" + encodeURIComponent("web.money");
+    url += "&autoclose=1&resizable=1&scrollbars=1";
+    url += "&popup=1";
+    url += "&mode=2";
+    bRejectPayment = false;
+    var newWindow = window.open(url, "myWindow", "height = " + height + ", width = " + width + ", resizable = 0, left = " + left + ", top = " + top);
+  }
+</script>
+			</div>
+			<div class="cl"></div>
+		</div>
+
+
+</div>
+
+<input type="hidden" value="3" id="lmi_keeper_type" name="lmi_keeper_type">
+
+<div class="clearfix btns_block">
+<script type="text/javascript">
+  function PostMsg2Parent(res, mtype)
+  {
+    if(typeof(res)=='undefined') res = 0;
+    if(typeof(mtype)=='undefined') mtype = 0;
+    var wParent = (window.parent && window.parent != window) ? window.parent : window.opener && window.opener != window ? window.opener : null;
+    if(wParent) {
+      var result = {messageType: mtype, data: {pstatus: res}};    
+      wParent.postMessage(JSON.stringify(result), '*');
+    } 
+  }
+
+	var bPayFail = false;
+	function cb_fail() { }
+
+	function pay_fail(e) {
+//		if (!window.confirm(L_PAYMENTCANCELCONFIRM)) return;
+		e.preventDefault();
+		if (bPayFail) return;
+    PostMsg2Parent(3, 0);
+		/*	var rejectbutton = document.getElementById("back");
+		if (rejectbutton != null) rejectbutton.disabled = true;*/
+		bPayFail = true;
+//		ajaxpack.postAjaxRequest("RejectPayment.asp?rej=" + sWMID + "&a=53", "", "cb_fail", "txt");
+		var dataWMID = "";
+		$.post("RejectPayment.asp?rej=" + sWMID + "&a=53", {wmid: dataWMID}, function (data, status) { cb_fail(); });
+		bRejectPayment = false;
+
+		if ($("#form_fail").length > 0)
+			$("#form_fail").trigger("submit");
+		else
+			document.location = LMI_FAIL_URL;
+	}
+</script>
+  <input type="submit" id="auth" name="choose_auth" value="Go to Payment" class="next-step__btn btn-half" tabindex="1">
+  <a href="#" class="cancel-payment btn-half" onclick="pay_fail(event);"><span>cancel</span></a>
+</div>
+
+<input type="hidden" id="ticket" name="ticket" value="309111ADCDB549149957E2498732F8AB">
+<input type="hidden" id="site" name="site" value="money">
+<input type="hidden" id="h" name="h" value="340">
+<script type="text/javascript">
+jQuery(document).ready(function () 
+{ 
+	InputSetFocus();
+  $('#idpasswd').addClass('js-hidden');
+	if ($('#img_rand_l').is(':visible')) return;
+	if ($('#img_rand_c').is(':visible')) return;
+	if ($('#wmcheck_no').length > 0) 
+	{
+		if($('#wmcheck_no').is(':visible'))
+		{
+			var phone = '' + LMI_FAST_PHONENUMBER;
+			if (phone.length == 0)
+				phone = getCookie("phone");
+
+			if (phone != null) {
+				$('#wmcheck_no').val(phone);
+        if(phone.length>0)
+        {
+          //$('#l_wmcheck_no').addClass('floating')
+          floatingLabel.evaluateInputs();
+        }
+    		var pwd = '' + $('#wmcheck_pwd').val();
+				if (pwd.length >= 1) {
+					$('#mobilecaptcha').focus();
+				}
+				else	{
+  				$('#wmcheck_pwd').focus();
+				}
+			}
+			else 
+  		{
+				$('#wmcheck_no').focus();
+			}
+		}
+	}
+});
+</script>
+</form>
+
+<script type="text/javascript">
+bRejectPayment = true;
+</script>
+<script type="text/javascript" src="js/track.js"></script>
+<!-- bottom_new.inc BEGIN -->
+		<div class="merchant_footer">
+			<div class="merchant-copyright">
+	      © 1998, WebMoney. <span style="color:rgba(255,255,255,0);display:block;">Srv5|188.243.229.86|PUPE|Tst:False|Int:False||m.ru|True</span>
+			</div>
+
+			<div class="lang_selector">
+				<ul class="merchant-list-lang">
+
+	        <li class="ru"><a href="//merchant.web.money/lmi/SignedLoginFormNewWC.asp?lang=ru-RU">Русский</a></li>
+	        <li class="vn"><a href="//merchant.web.money/lmi/SignedLoginFormNewWC.asp?lang=vi-VN">tiếng Việt</a></li>
+	        <li class="es"><a href="//merchant.web.money/lmi/SignedLoginFormNewWC.asp?lang=es-ES">Español</a></li>
+
+	      </ul>
+
+				<span class="en">
+	        <a href="#" class="merchant-current-lang">
+            English
+	        </a>
+	      </span>
+
+			</div>
+
+	  </div>
+  </div>
+<noscript><p><img src="//piwik.webmoney.ru/piwik.php?idsite=4" style="border:0;" alt="" /></p></noscript>
+
+
+</body></html>
